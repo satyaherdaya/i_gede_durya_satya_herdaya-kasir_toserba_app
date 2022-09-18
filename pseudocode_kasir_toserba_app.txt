@@ -1,0 +1,24 @@
+READ AND WRITE list_belanja RECORD ARRAY {id INT, nama_barang STRING, harga INT, jumlah INT}
+READ AND WRITE nama_barang STRING
+READ AND WRITE harga INT
+READ AND WRITE jumlah INT
+READ AND WRITE sum INT
+READ AND WRITE pilih INT
+READ AND WRITE size INT
+READ AND WRITE confirm STRING
+
+PROCEDURE display(size INT)
+    OUTPUT "LIST BARANG YANG DIBELI"
+    IF size==0
+        THEN
+            OUTPUT "Barang Belanja Kosong"
+    ELSE
+        THEN
+            FOR i FROM "0" IN RANGE list_belanja
+                OUTPUT list_belanja[i].id
+                OUTPUT list_belanja[i].nama_barang
+                OUTPUT list_belanja[i].harga
+                OUTPUT list_belanja[i].jumlah
+            END FOR
+    END IF
+END PROCEDURE

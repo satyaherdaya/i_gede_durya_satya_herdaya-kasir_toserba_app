@@ -22,3 +22,34 @@ PROCEDURE display(size INT)
             END FOR
     END IF
 END PROCEDURE
+
+PROCEDURE main()
+    STORE size = 0
+    STORE pilih = 0
+    WHILE pilih != 2
+        CALL display(size)
+        OUTPUT "MENU KASIR"
+        OUTPUT "1. Input Barang"
+        OUTPUT "2. Bayar Barang"
+        INPUT pilih
+        STORE pilih
+        IF pilih == 1 
+            THEN
+                CALL inputBarang(size)
+        ELSE pilih == 2
+            THEN
+                OUTPUT "Total Harga : "
+                OUTPUT CALL totalHarga(size)
+                OUTPUT "Konfirmasi Pembayaran (yes/no): "
+                INPUT confirm
+                STORE confirm
+                IF confirm=="yes"
+                    THEN
+                        OUTPUT "Terima Kasih Telah Berbelanja Di Toko Kami"
+                END IF
+        ELSE
+            THEN
+                OUTPUT "INPUTAN SALAH"
+        END IF
+    END WHILE
+END PROCEDURE

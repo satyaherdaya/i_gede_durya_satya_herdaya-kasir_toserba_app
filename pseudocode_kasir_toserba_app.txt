@@ -7,6 +7,20 @@ READ AND WRITE pilih INT
 READ AND WRITE size INT
 READ AND WRITE confirm STRING
 
+PROCEDURE inputBarang(size INT)
+    INPUT nama_barang
+    STORE nama_barang
+    INPUT harga
+    STORE harga
+    INPUT jumlah
+    STORE jumlah
+
+    STORE list_belanja[size].id = size+1
+    STORE list_belanja[size].nama_barang = nama_barang
+    STORE list_belanja[size].harga = harga
+    STORE list_belanja[size].jumlah = jumlah
+END PROCEDURE
+
 PROCEDURE display(size INT)
     OUTPUT "LIST BARANG YANG DIBELI"
     IF size==0

@@ -1,0 +1,83 @@
+READ AND WRITE list_belanja RECORD ARRAY {id INT, nama_barang STRING, harga INT, jumlah INT}
+READ AND WRITE nama_barang STRING
+READ AND WRITE harga INT
+READ AND WRITE jumlah INT
+READ AND WRITE sum INT
+READ AND WRITE pilih INT
+READ AND WRITE size INT
+READ AND WRITE confirm STRING
+
+PROCEDURE inputBarang(size INT)
+    INPUT nama_barang
+    STORE nama_barang
+    INPUT harga
+    STORE harga
+    INPUT jumlah
+    STORE jumlah
+
+    STORE list_belanja[size].id = size+1
+    STORE list_belanja[size].nama_barang = nama_barang
+    STORE list_belanja[size].harga = harga
+    STORE list_belanja[size].jumlah = jumlah
+END PROCEDURE
+
+PROCEDURE display(size INT)
+    OUTPUT "LIST BARANG YANG DIBELI"
+    IF size==0
+        THEN
+            OUTPUT "Barang Belanja Kosong"
+    ELSE
+        THEN
+            FOR i FROM "0" IN RANGE list_belanja
+                OUTPUT list_belanja[i].id
+                OUTPUT list_belanja[i].nama_barang
+                OUTPUT list_belanja[i].harga
+                OUTPUT list_belanja[i].jumlah
+            END FOR
+    END IF
+END PROCEDURE
+
+FUNCTION totalHarga(size INT)
+    STORE sum = 0
+    IF size==0
+        THEN
+            OUTPUT "Barang Belanja Kosong"
+    ELSE
+        THEN
+            FOR i FROM "0" IN RANGE list_belanja
+                STORE sum = sum + (list_belanja[i].harga*list_belanja[i].jumlah)
+            END FOR
+    END IF
+    RETURN sum
+END FUNCTION
+
+PROCEDURE main()
+    STORE size = 0
+    STORE pilih = 0
+    WHILE pilih != 2
+        CALL display(size)
+        OUTPUT "MENU KASIR"
+        OUTPUT "1. Input Barang"
+        OUTPUT "2. Bayar Barang"
+        INPUT pilih
+        STORE pilih
+        IF pilih == 1 
+            THEN
+                CALL inputBarang(size)
+        ELSE pilih == 2
+            THEN
+                OUTPUT "Total Harga : "
+                OUTPUT CALL totalHarga(size)
+                OUTPUT "Konfirmasi Pembayaran (yes/no): "
+                INPUT confirm
+                STORE confirm
+                IF confirm=="yes"
+                    THEN
+                        OUTPUT "Terima Kasih Telah Berbelanja Di Toko Kami"
+                END IF
+        ELSE
+            THEN
+                OUTPUT "INPUTAN SALAH"
+        END IF
+    END WHILE
+END PROCEDURE

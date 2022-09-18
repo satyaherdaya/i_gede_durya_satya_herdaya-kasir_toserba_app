@@ -37,6 +37,20 @@ PROCEDURE display(size INT)
     END IF
 END PROCEDURE
 
+FUNCTION totalHarga(size INT)
+    STORE sum = 0
+    IF size==0
+        THEN
+            OUTPUT "Barang Belanja Kosong"
+    ELSE
+        THEN
+            FOR i FROM "0" IN RANGE list_belanja
+                STORE sum = sum + (list_belanja[i].harga*list_belanja[i].jumlah)
+            END FOR
+    END IF
+    RETURN sum
+END FUNCTION
+
 PROCEDURE main()
     STORE size = 0
     STORE pilih = 0
